@@ -1,11 +1,17 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Pet Adoption</title>
-  </head>
-  <body>
-    <h1>Welcome to Pet Adoption</h1>
-    <p>Find your new furry friend today!</p>
-    <a href="{{ url_for('adoption') }}">Adopt a Pet</a>
-  </body>
-</html>
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="px-4 py-5 my-5 text-center">
+  <img class="img-fluid mx-auto mb-4 rounded-5" src="https://picsum.photos/400/200" alt="">
+  <h1 class="display-5 fw-bold text-body-emphasis">Welcome to Pet Adoption</h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">Check out wide variety of pets collection in our store !!!</p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <a href="/register" class="btn btn-primary btn-lg px-4 gap-3">Get Started</a>
+      <a href="/login" class="btn btn-outline-secondary btn-lg px-4">Login</a>
+    </div>
+  </div>
+</div>
+{% endblock content %}
