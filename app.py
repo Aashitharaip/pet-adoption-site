@@ -1,8 +1,8 @@
 from flask import Flask, render_template, request, redirect, session, url_for, flash
-from database import Auth, PetStore
+from database import Auth, PetStore, login_required
 
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates')
 
 app.secret_key = "webjfgerjkgfjervjkgrjvgjgjvgrjgbhjgrjhg"
 
@@ -44,3 +44,23 @@ def cart(pet_id):
     customer = PetStore().buy_pet(pet_id)
     return render_template("cart.html", pet = PetStore().get_pet(pet_id), customer = customer)
 
+# Route to update user details
+@app.route('/update_user', methods=['GET', 'POST'])
+@login_required
+def update_user():
+    auth = Auth()
+    if request.method == "POST":
+        auth.update_user_details(request)
+    user_details = auth.get_user_details(session.get("user-token"))
+    return render_template('update_user.html', user_details=user_details)
+
+# Route to delete user account
+@app.route('/delete_account', methods=['GET', 'POST'])
+@login_required
+def delete_account():
+    auth = Auth()
+    if request.method == "POST":
+        auth.delete_user_account()
+        return redirect(url_for('index'))
+    user_details = auth.get_user_details(session.get("user-token"))
+    return render_template('delete_account.html', user_details=user_details)

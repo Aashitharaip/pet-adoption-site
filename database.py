@@ -51,6 +51,35 @@ class Auth(Database):
         else:
             flash("User Email Does Not Exist...")
         return None
+    
+    def get_user_details(self, email):
+        user_details = self.cur.execute("SELECT * FROM CUSTOMER WHERE EMAIL = ?", (email,)).fetchone()
+        return user_details
+    
+    def update_user_details(self, request):
+        user_token = session.get("user-token")
+        if user_token:
+            cust_name = request.form.get("name")
+            email = request.form.get("email")
+            phone_no = request.form.get("phone")
+            local_address = request.form.get("address")
+            password = request.form.get("password")
+            data_tuple = (cust_name, email, phone_no, local_address, password, user_token)
+            self.cur.execute("UPDATE CUSTOMER SET cust_name=?, email=?, phone_no=?, local_address=?, password=? WHERE email=?", data_tuple)
+            self.conn.commit()
+            flash("User details updated successfully.")
+        else:
+            flash("User not logged in.")
+    
+    def delete_user_account(self):
+        user_token = session.get("user-token")
+        if user_token:
+            self.cur.execute("DELETE FROM CUSTOMER WHERE email=?", (user_token,))
+            self.conn.commit()
+            flash("User account deleted successfully.")
+            session.pop("user-token", None)
+        else:
+            flash("User not logged in.")
 
 
 class PetStore(Database):
