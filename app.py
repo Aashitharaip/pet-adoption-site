@@ -42,4 +42,4 @@ def pet_store():
 @app.route('/cart/<int:pet_id>')
 def cart(pet_id):
     customer = PetStore().buy_pet(pet_id)
-    return render_template("cart.html", pet = PetStore().get_pet(pet_id))
+    return render_template("cart.html", pet = PetStore().get_pet(pet_id), customer = customer)
