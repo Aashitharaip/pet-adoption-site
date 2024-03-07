@@ -1,22 +1,21 @@
 CREATE TABLE IF NOT EXISTS shelter (
     shelter_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    shelter_name VARCHAR(20),
-    location VARCHAR(20)
+    shelter_name TEXT,
+    location TEXT
 );
 
 CREATE TABLE IF NOT EXISTS customer (
-    cust_id INTEGER PRIMARY KEY,
-    cust_name VARCHAR(30),
-    email VARCHAR(30),
-    phone_no INTEGER,
-    address VARCHAR(50),
-    shelter_id INTEGER,
-    FOREIGN KEY(shelter_id) REFERENCES shelter(shelter_id)
+    cust_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cust_name TEXT,
+    email TEXT,
+    phone_no TEXT,
+    local_address TEXT,
+    password TEXT
 );
 
 CREATE TABLE IF NOT EXISTS breed (
     breed_id INTEGER PRIMARY KEY,
-    breed_name VARCHAR(20)
+    breed_name TEXT
 );
 
 CREATE TABLE IF NOT EXISTS pets (
@@ -40,14 +39,3 @@ CREATE TABLE IF NOT EXISTS adoption_details (
     FOREIGN KEY(pet_id) REFERENCES pets(pet_id)
 );
 
-INSERT INTO shelter (shelter_id, shelter_name, location) VALUES (1, 'Save animals shelter', 'Sai Ram Layout');
-INSERT INTO shelter (shelter_id, shelter_name, location) VALUES (2, 'Shesh Naag', 'Magadi Road');
-INSERT INTO shelter (shelter_id, shelter_name, location) VALUES (3, 'Cupa Larrc', 'Bangalore');
-
-INSERT INTO breed (breed_id, breed_name) VALUES (1, 'Bulldog');
-INSERT INTO breed (breed_id, breed_name) VALUES (2, 'Siamese');
-INSERT INTO breed (breed_id, breed_name) VALUES (3, 'Holland Lop');
-
-INSERT INTO pets (name, species, breed_id, gender, age, shelter_id) VALUES ('Buddy', 'Dog', 1, 'Male', 3, 1);
-INSERT INTO pets (name, species, breed_id, gender, age, shelter_id) VALUES ('Whiskers', 'Cat', 2, 'Female', 2, 2);
-INSERT INTO pets (name, species, breed_id, gender, age, shelter_id) VALUES ('Fluffy', 'Rabbit', 3, 'Male', 1, 3);

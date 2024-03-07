@@ -74,11 +74,11 @@ def init_db():
         conn.close()
 
         # Insert shelter values
-        conn = connect_db()
-        conn.cursor().execute('INSERT INTO shelter (shelter_name, location) VALUES (?, ?)', ('Shelter 1', 'Location 1'))
-        conn.cursor().execute('INSERT INTO shelter (shelter_name, location) VALUES (?, ?)', ('Shelter 2', 'Location 2'))
-        conn.commit()
-        conn.close()
+        # conn = connect_db()
+        # conn.cursor().execute('INSERT INTO shelter (shelter_name, location) VALUES (?, ?)', ('Shelter 1', 'Location 1'))
+        # conn.cursor().execute('INSERT INTO shelter (shelter_name, location) VALUES (?, ?)', ('Shelter 2', 'Location 2'))
+        # conn.commit()
+        # conn.close()
 
         
 
