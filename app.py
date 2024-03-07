@@ -35,9 +35,9 @@ def login():
 
 @app.route("/pet-store")
 def pet_store():
+    user = Auth().get_user_details(session.get("user-token"))
     pets = PetStore().get_pets()
-    return render_template("store.html", pets = pets)
-
+    return render_template("store.html", pets = pets, user = user)
 
 @app.route('/cart/<int:pet_id>')
 def cart(pet_id):
@@ -63,4 +63,4 @@ def delete_account():
         auth.delete_user_account()
         return redirect(url_for('index'))
     user_details = auth.get_user_details(session.get("user-token"))
-    return render_template('delete_account.html', user_details=user_details)
+    return render_template('delete-account.html', user_details=user_details)

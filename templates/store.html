@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="text-center mt-5 display-4">Welcome to the Pet Store</h1>
-    
-    <div class="d-flex justify-content-end mb-3">
-        <a href="{{ url_for('update_user') }}" class="btn btn-primary mr-2">Update User Details</a><br>
-        <a href="{{ url_for('delete_account') }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</a>
-    </div>
+<h1 class="text-center my-4 display-4 border-bottom ">Welcome to the Pet Store</h1>
+<div class="d-flex justify-content-end mb-3">
+    <a href="{{ url_for('update_user') }}" class="btn btn-primary me-2">Update User Details</a><br>
+    <a href="{{ url_for('delete_account') }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete your account?')">Delete Account</a>
+</div>
 
+<p class="my-3"><b>Hello {{ user[1] }},</b></p>
 <div class="card">
     <div class="card-header"><h4>List of pets in our store.</h4></div>
     <div class="card-body">

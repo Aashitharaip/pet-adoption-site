@@ -14,8 +14,6 @@ def login_required(func):
             return redirect(url_for('login', next=next_url))
     return wrapper
 
-
-
 class Database:
     def __init__(self):
         self.conn= sqlite3.connect("db.sqlite3")
@@ -63,9 +61,8 @@ class Auth(Database):
             email = request.form.get("email")
             phone_no = request.form.get("phone")
             local_address = request.form.get("address")
-            password = request.form.get("password")
-            data_tuple = (cust_name, email, phone_no, local_address, password, user_token)
-            self.cur.execute("UPDATE CUSTOMER SET cust_name=?, email=?, phone_no=?, local_address=?, password=? WHERE email=?", data_tuple)
+            data_tuple = (cust_name, email, phone_no, local_address, user_token)
+            self.cur.execute("UPDATE CUSTOMER SET cust_name=?, email=?, phone_no=?, local_address=? WHERE email=?", data_tuple)
             self.conn.commit()
             flash("User details updated successfully.")
         else:
