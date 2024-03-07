@@ -1,19 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <title>Available Pets</title>
+    <title>Adopt a Pet</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm8X-5M0ver1Q2kXQRtHcNv7/aF5r93T2w" crossorigin="anonymous">
 </head>
 <body>
-    <h1>Available Pets</h1>
-    <ul>
-        {% for pet in pets %}
-            <li>{{ pet.name }} - {{ pet.species }}</li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1 class="text-center mt-5">Adopt a Pet</h1>
+        <form method="POST" action="/adoption">
+            <div class="form-group">
+                <label for="pet">Select a Pet</label>
+                <select class="form-control" name="pet_id" id="pet_id">
+                    {% for pet in pets %}
+                    <option value="{{ pet.pet_id }}">{{ pet.name }} - {{ pet.species }} - {{ breeds[pet.breed_id - 1].breed_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="shelter">Select a Shelter</label>
+                <select class="form-control" name="shelter_id" id="shelter_id">
+                    {% for shelter in shelters %}
+                    <option value="{{ shelter.shelter_id }}">{{ shelter.shelter_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="breed">Select a Breed</label>
+                <select class="form-control" name="breed_id" id="breed_id">
+                    {% for breed in breeds %}
+                    <option value="{{ breed.breed_id }}">{{ breed.breed_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Add to Cart</button>
+        </form>
+    </div>
 </body>
 </html>
-
-
