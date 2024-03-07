@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-center mt-5 display-4">Welcome to the Pet Store</h1>
+
+
+
+<div class="card">
+    <div class="card-header"><h4>List of pets in our store.</h4></div>
+    <div class="card-body">
+        
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <th>SI NO</th>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Breed</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Shelter</th>
+                    <th>Location</th>
+                    <th></th>
+                </tr>
+                {% for pet in pets %}
+                <tr>
+                    <td>{{ pet[0]}}</td>
+                    <td>{{ pet[1] }}</td>
+                    <td>{{ pet[2] }}</td>
+                    <td>{{ pet[3] }}</td>
+                    <td>{{ pet[4] }}</td>
+                    <td>{{ pet[5] }}</td>
+                    <td>{{ pet[6] }}</td>
+                    <td>{{ pet[7] }}</td>
+                    <td><a href="{{url_for('cart', pet_id = pet[0] )}}" class="btn btn-success">Buy</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

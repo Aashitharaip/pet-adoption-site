@@ -1,14 +1,53 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Cart</title>
-  </head>
-  <body>
-    <h1>Cart</h1>
-    <p>Name: {{ pet.name }}</p>
-    <p>Species: {{ pet.species }}</p>
-    <p>Breed: {{ breed.breed_name }}</p>
-    <p>Shelter: {{ shelter.shelter_name }}</p>
-    <a href="{{ url_for('index') }}">Back to Adoption</a>
-  </body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card shadow border-0">
+      <div class="card-header">
+        <h4>Pet Details</h4>
+      </div>
+      <div class="card-body">
+        <table class="table">
+          <tr><th>Name</th><td>{{ pet[1] }}</td></tr>
+          <tr><th>Species</th><td>{{ pet[2] }}</td></tr>
+          <tr><th>Breed</th><td>{{ pet[3] }}</td></tr>
+          <tr><th>Age</th><td>{{ pet[4] }}</td></tr>
+          <tr><th>Gender</th><td>{{ pet[5] }}</td></tr>
+          <tr><th rowspan="2">Shelter</th><td>Name: {{ pet[6] }}</td></tr>
+          <tr><td>Location: {{ pet[7] }}</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-header">
+        <h1>Adoptation Certificate</h1>
+      </div>
+      <div class="card-body">
+        <table class="table">
+			<tr><th>Name of the customer</th><td>{{ customer[1] }}</td></tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ customer[2] }}</td>
+			</tr>
+			<tr>
+				<th>Phone number</th>
+				<td>{{ customer[3] }}</td>
+			</tr>
+			<tr>
+				<th>Address</th>
+				<td>{{ customer[4] }}</td>
+			</tr>
+			<tr>
+				<th>Date of adoptation</th>
+			</tr>
+		</table>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
